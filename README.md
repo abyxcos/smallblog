@@ -19,6 +19,7 @@ To run smallblog, simply go to the folder that contains your blog, and run `smal
 
 ## Configuration
 Smallblog may be configured via the variables at the top of the file.
+```shell
     out_file="index.html"  # The html file generated in your blog root
     title="blog" # The title of your blog
 
@@ -26,6 +27,7 @@ Smallblog may be configured via the variables at the top of the file.
 Smallblog uses the same template system as jekyll. The default smallblog template is the jekyll default.
 
 Posts take the format of:
+```html
     <p><div class="post">
     <h3 class="title"><a href'/blog/year/month/day/post.html'>Title</a></h3>
     <p class="meta">Date: year-month-day time</p>
