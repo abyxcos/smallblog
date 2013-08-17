@@ -20,8 +20,11 @@ To run smallblog, simply go to the folder that contains your blog, and run `smal
 ## Configuration
 Smallblog may be configured via the variables at the top of the file.
 ```shell
-    out_file="index.html"  # The html file generated in your blog root
-    title="blog" # The title of your blog
+    out_file="index.html"   # The html file generated in your blog root
+    title="blog"            # The title of your blog
+    max_posts=3             # Maximum posts on the front page
+
+```
 
 ## Theming
 Smallblog uses the same template system as jekyll. The default smallblog template is the jekyll default.
@@ -33,6 +36,7 @@ Posts take the format of:
     <p class="meta">Date: year-month-day time</p>
     <p>Post text</p>
     </div></p>
+```
 
 The site should be wrapped in a `<div class="site">` and contains the standard `<div class="header">`, `<div class="footer">`, and `<div class="contact">` for the header, footer, and footer contact information styling respectively.
 
