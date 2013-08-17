@@ -1,7 +1,7 @@
 # smallblog
 A small static blogging platform in the style of [jekyll](jekyllrb.com)
 
-Smallblog takes markdown files organized as `blog/year/month/day/post.md` and generates an index page containing the latest few posts, and a simple way to navigate all posts. Smallblog must be re-ran every time you add or modify a post (in the spirit of static blogging.) An example site may be round [here](http://mntic.ch/blog).
+Smallblog takes markdown files organized as `blog/year/month/day/post.md` and generates an index page containing the latest few posts, and a simple way to navigate all posts. Smallblog must be re-ran every time you add or modify a post (in the spirit of static blogging.) An example site may be round [here](http://mnetic.ch/blog).
 
 ## Installation
     cd ~/public_html
