@@ -23,7 +23,6 @@ Smallblog may be configured via the variables at the top of the file.
     out_file="index.html"   # The html file generated in your blog root
     title="blog"            # The title of your blog
     max_posts=3             # Maximum posts on the front page
-
 ```
 
 ## Theming
