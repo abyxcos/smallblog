@@ -5,9 +5,9 @@ Smallblog takes markdown files organized as `blog/year/month/day/post.md` and ge
 
 ## Installation
     cd ~/public_html
-	 mkdir blog
-	 cp main.css blog/
-	 echo "test" > blog/2013/08/16/test.md
+    mkdir blog
+    cp main.css blog/
+    echo "test" > blog/2013/08/16/test.md
 
 Installation is simple. Just make a `blog` directory on your server, and copy the `main.css` template into it. File hierarchy under `blog` is in the form of `blog/year/month/date/post.md`. Posts must have a .md extension or they will be ignored. Multiple posts on the same date will be sorted by last modified timestamp (`ls -t`.)
 
@@ -20,17 +20,17 @@ To run smallblog, simply go to the folder that contains your blog, and run `smal
 ## Configuration
 Smallblog may be configured via the variables at the top of the file.
     out_file="index.html"  # The html file generated in your blog root
-	 title="blog" # The title of your blog
+    title="blog" # The title of your blog
 
 ## Theming
 Smallblog uses the same template system as jekyll. The default smallblog template is the jekyll default.
 
 Posts take the format of:
     <p><div class="post">
-	 <h3 class="title"><a href'/blog/year/month/day/post.html'>Title</a></h3>
-	 <p class="meta">Date: year-month-day time</p>
-	 <p>Post text</p>
-	 </div></p>
+    <h3 class="title"><a href'/blog/year/month/day/post.html'>Title</a></h3>
+    <p class="meta">Date: year-month-day time</p>
+    <p>Post text</p>
+    </div></p>
 
 The site should be wrapped in a `<div class="site">` and contains the standard `<div class="header">`, `<div class="footer">`, and `<div class="contact">` for the header, footer, and footer contact information styling respectively.
 
