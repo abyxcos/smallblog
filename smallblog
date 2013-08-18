@@ -59,7 +59,7 @@ make_archive(){
 	echo "<h2>Archives:</h2>"
 	echo "<ul class=\"posts\">"
 	for post in `ls -r */*/*/*.md`; do
-		time=`stat -c %y ${post} | sed 's/\..* / /'`
+		time=`stat -c %y ${post} | sed 's/ .*//'`
 		title=`head -n1 ${post} | sed 's/#* //'`
 		echo "<li><span>${time}</span> &raquo; <a href=\"/blog/${post}.html\">${title}</a></li>"
 	done
