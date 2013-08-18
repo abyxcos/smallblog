@@ -55,23 +55,24 @@ make_post(){
 }
 
 make_archive(){
+	month="00"
+
 	echo "${blog_header}"
 	echo "<h2>Archives:</h2>"
 	echo "<ul class=\"posts\">"
-	for year in `ls -r`; do
-	if [ -d "${year}" ]; then
-		for month in `ls -r "${year}"`; do
-			echo "<h3>${year} - ${month}</h3>"
-			for day in `ls -r "${year}/${month}"`; do
-				for post in `ls -r "${year}/${month}/${day}"/*.md`; do
-					time=`stat -c %y ${post} | sed 's/ .*//'`
-					title=`head -n1 ${post} | sed 's/#* //'`
-					echo "<li><span>${time}</span> &raquo; <a href=\"/blog/${post}.html\">${title}</a></li>"
-				done
-			done
-		done
-	fi
+
+	for post in `ls -r */*/*/*.md`; do
+		newmonth=`echo "${post}" | sed 's/^[0-9]*\///' | sed 's/\/.*//'`
+		if [ "${month}" -ne "${newmonth}" ]; then
+			month="${newmonth}"
+			echo "<h3>`echo ${post} | sed 's/\/.*//'` - ${month}</h3>"
+		fi
+
+		time=`stat -c %y ${post} | sed 's/ .*//'`
+		title=`head -n1 ${post} | sed 's/#* //'`
+		echo "<li><span>${time}</span> &raquo; <a href=\"/blog/${post}.html\">${title}</a></li>"
 	done
+
 	echo "</ul>"
 	echo "${blog_footer}"
 }
