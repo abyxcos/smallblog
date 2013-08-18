@@ -99,4 +99,5 @@ max_posts=`expr ${max_posts} - 1`
 
 done
 make_archive > "${archive_file}"
+echo "<h3><a class=\"extra\" href=\"/blog/${archive_file}\">all posts</a></h3>" >> "${out_file}"
 echo "${blog_footer}" >> "${out_file}"
