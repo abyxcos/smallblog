@@ -18,7 +18,8 @@
 # USE OR PERFORMANCE OF THIS SOFTWARE.
 
 # Configuration
-out_file="index.html"	# The html file generated in your blog root
+out_file="index.html"		# The html file generated in your blog root
+archive_file="archive.html"	# The html file for your post index
 title="blog"				# The title of your blog
 max_posts=3					# Maximum posts on the front page
 
@@ -29,13 +30,14 @@ blog_header="
 <html>
 	<head>
 		<title>$title</title>
-		<link rel="stylesheet" href="/blog/main.css">
+		<link rel=\"stylesheet\" href=\"/blog/main.css\">
 	</head>
 	<body>
-		<div class="container">
-			<div class="site">
-				<div class"header">
-					<h1 class="title"><a href="/blog">mnetic.ch/blog</a></h1>
+		<div class=\"container\">
+			<div class=\"site\">
+				<div class=\"header\">
+					<h1 class=\"title\"><a href=\"/blog\">mnetic.ch/blog</a></h1>
+					<a class=\"extra\" href=\"/blog/${archive_file}\">all posts</a>
 				</div>
 "
 # Generate the footer
@@ -52,17 +54,31 @@ make_post(){
 	echo "$4$2"
 }
 
+make_archive(){
+	echo "${blog_header}"
+	echo "<h2>Archives:</h2>"
+	echo "<ul class=\"posts\">"
+	for post in `ls -r */*/*/*.md`; do
+		time=`stat -c %y ${post} | sed 's/\..* / /'`
+		title=`head -n1 ${post} | sed 's/#* //'`
+		echo "<li><span>${time}</span> &raquo; <a href=\"/blog/${post}.html\">${title}</a></li>"
+	done
+	echo "</ul>"
+	echo "${blog_footer}"
+}
+
 echo "${blog_header}" > "${out_file}"
 for post in `ls -r */*/*/*.md`; do
 time=`stat -c %y ${post} | sed 's/\..* / /'`
 
 post_header="
-<p><div class=\"post\">
-<h3 class=\"title\"><a href='/blog/${post}.html'>
+<h2 class=\"title\"><a href='/blog/${post}.html'>
 	`head -n1 ${post} | sed 's/^#* //'`
-</a></h3>
-<p class=\"meta\">Date: ${time}</p>"
-post_footer="</div></p>"
+</a></h2>
+<p class=\"meta\">Date: ${time}</p>
+<div class=\"post\">
+"
+post_footer="</div>"
 
 make_post "${blog_header}" "${blog_footer}" "${post_header}" "${post_footer}" "${post}" > "${post}.html"
 
@@ -72,4 +88,5 @@ fi
 max_posts=`expr ${max_posts} - 1`
 
 done
+make_archive > "${archive_file}"
 echo "${blog_footer}" >> "${out_file}"
