@@ -54,7 +54,7 @@ make_post(){
 
 echo "${blog_header}" > "${out_file}"
 for post in `ls -r */*/*/*.md`; do
-	time=`stat -c %y ${post} | sed 's/\..* / /'`
+time=`stat -c %y ${post} | sed 's/\..* / /'`
 
 post_header="
 <p><div class=\"post\">
@@ -64,12 +64,12 @@ post_header="
 <p class=\"meta\">Date: ${time}</p>"
 post_footer="</div></p>"
 
-	make_post "${blog_header}" "${blog_footer}" "${post_header}" "${post_footer}" "${post}" > "${post}.html"
+make_post "${blog_header}" "${blog_footer}" "${post_header}" "${post_footer}" "${post}" > "${post}.html"
 
-	if [ ${max_posts} -gt 0 ]; then
-		make_post "" "" "${post_header}" "${post_footer}" "${post}" >> "${out_file}"
-	fi
-	max_posts=`expr ${max_posts} - 1`
+if [ ${max_posts} -gt 0 ]; then
+	make_post "" "" "${post_header}" "${post_footer}" "${post}" >> "${out_file}"
+fi
+max_posts=`expr ${max_posts} - 1`
 
 done
 echo "${blog_footer}" >> "${out_file}"
