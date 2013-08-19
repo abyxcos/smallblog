@@ -72,8 +72,9 @@ make_archive(){
 			echo "<h3>`echo ${post} | sed 's/\/.*//'` - ${month}</h3>"
 		fi
 
-		time=`stat -c %y ${post} | sed 's/ .*//'`
-		title=`head -n1 ${post} | sed 's/#* //'`
+		time=`stat -c %y "${post}" | sed 's/ .*//'`
+		#time=`stat -f "%Y-%m-%d %H:%M:%S %z" "${post}"` # BSD stat, command untested
+		title=`head -n1 "${post}" | sed 's/#* //'`
 		echo "<li><span>${time}</span> &raquo; <a href=\"/blog/${post}.html\">${title}</a></li>"
 	done
 

@@ -45,5 +45,7 @@ The site should be wrapped in a `<div class="site">` and contains the standard `
 ## Bugs
 Smallblog was written under pdksh and tested under bash (both on linux.) It should be posix compliant, but please let me know if you find any bugs.
 
+* `stat(1)` on Linux is different than the BSD version. An alternate line has been included, that may be uncommented on BSD systems. I am looking into more portable methods of finding the file access time.
+
 ## License
 Smallblog is released under the ISC license. Please see [LICENSE](https://github.com/abyxcos/smallblog/blob/master/LICENSE) for the full text.
