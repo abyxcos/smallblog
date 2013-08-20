@@ -8,7 +8,7 @@ Smallblog requires a markdown parser. I currently use and recommend [Discouont](
 
 ## Installation
     cd ~/public_html
-    mkdir blog
+    mkdir blog tags
     cp main.css blog/
     echo "test" > blog/2013/08/16/test.md
 
@@ -19,6 +19,8 @@ Installation is simple. Just make a `blog` directory on your server, and copy th
     smallblog
 
 To run smallblog, simply go to the folder that contains your blog, and run `smallblog` in that directory. It will generate the main page (`index.html`) in the current directory by parsing the date hierarchy folders for markdown (`.md`) files.
+
+To use the tags features, include a `tags: ` line in your post followed by a list of tags to apply to your post.
 
 ## Configuration
 Smallblog may be configured via the variables at the top of the file.
