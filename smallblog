@@ -36,6 +36,7 @@ blog_header="
 					<h1 class=\"title\"><a href=\"/blog\">mnetic.ch/blog</a></h1>
 					<a class=\"extra\" href=\"/blog/tags/\">tags</a>
 					<a class=\"extra\" href=\"/blog/archive.html\">all posts</a>
+					<a class=\"extra\" href=\"/blog/feed.rss\">rss</a>
 				</div>"
 blog_footer="
 			</div>
@@ -44,11 +45,14 @@ blog_footer="
 </html>"
 
 make_post(){
+	time=`stat -c %y "$3" | sed 's/\..* / /'`
+	#time=`stat -f "%Y-%m-%d %H:%M:%S %z" "$3"` # BSD stat, command untested
+
 	echo "$1"
 	echo "<h2 class=\"title\"><a href='/blog/$3.html'>
 		`head -n1 $3 | sed 's/^#* //'`
 		</a></h2>
-		<p class=\"meta\">Date: $4</p>
+		<p class=\"meta\">Date: ${time}</p>
 		<div class=\"post\">"
 	tail -n+2 "$3" | markdown
 	echo "</div>"
@@ -64,10 +68,9 @@ make_index(){
 	echo "<ul class=\"posts\">"
 
 	for post in `ls -r ${1}/*.md`; do
+		title=`head -n1 "${post}" | sed 's/#* //'`
 		time=`stat -c %y "${post}" | sed 's/ .*//'`
 		#time=`stat -f "%Y-%m-%d %H:%M:%S %z" "${post}"` # BSD stat, command untested
-		title=`head -n1 "${post}" | sed 's/#* //'`
-		#newmonth=`echo "${post}" | sed 's/^[0-9]*\///' | sed 's/\/.*//'`
 		newmonth=`echo "${time}" | sed 's/^[0-9]*-//' | sed 's/-.*$//'`
 
 		if [ "${month}" -ne "${newmonth}" ]; then
@@ -114,11 +117,40 @@ make_tag_index(){
 	echo "${blog_footer}"
 }
 
+make_rss(){
+	echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>"
+	echo "<rss version=\"2.0\">"
+	echo "<channel>"
+	echo "<title>$title</title>"
+	echo "<description>$title</description>"
+	echo "<link>http://mnetic.ch/blog</link>"
+	echo "<ttl>1800</ttl>"
+	for post in `ls -r */*/*/*.md`; do
+		link_ident='<h2 class="title">'
+		link=`grep "${link_ident}" "${post}.html"`
+		echo "<item>"
+		echo "<title>"
+		grep -A1 "${link}" "${post}.html" | grep -v "${link}" | sed 's/^\s*//'
+		echo "</title>"
+		echo "<link>"
+		echo "${link}" | sed "s/^${link_ident}<a href='//" | sed "s/'>$//"
+		echo "</link>"
+		echo "<pubDate>"
+		grep '<p class="meta">Date:' "${post}.html" | sed 's/^\s*<p class="meta">Date: //' | sed 's/<\/p>$//'
+		echo "</pubDate>"
+		echo "<description>"
+		markdown < "${post}"
+		echo "</description>"
+		echo "</item>"
+	done
+	echo "</channel>"
+	echo "</rss>"
+}
+
 echo "${blog_header}" > index.html
 for post in `ls -r */*/*/*.md`; do
-time=`stat -c %y ${post} | sed 's/\..* / /'`
 
-make_post "${blog_header}" "${blog_footer}" "${post}" "${time}" > "${post}.html"
+make_post "${blog_header}" "${blog_footer}" "${post}" > "${post}.html"
 
 if [ ${max_posts} -gt 0 ]; then
 	make_post "" "" "${post}" "${time}" >> index.html
@@ -135,4 +167,5 @@ make_tags
 for tag in `ls -r tags`; do
 	make_index "tags/${tag}" "${tag}" > "tags/${tag}/index.html"
 done
-make_tag_index tags > "tags/index.html"
+make_tag_index tags > tags/index.html
+make_rss > feed.rss
