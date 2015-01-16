@@ -4,7 +4,7 @@ A small static blogging platform in the style of [jekyll](jekyllrb.com)
 Smallblog takes markdown files organized as `blog/year/month/day/post.md` and generates an index page containing the latest few posts, and a simple way to navigate all posts. Smallblog must be re-ran every time you add or modify a post (in the spirit of static blogging.) An example site may be found [here](http://mnetic.ch/blog).
 
 ## Dependencies
-Smallblog requires a markdown parser. I currently use and recommend [Discouont](http://www.pell.portland.or.us/~orc/Code/discount/), which is written in C. If you're not familiar with markdown, there is a good tutorial on Wikipedia, available [here](http://en.wikipedia.org/wiki/Markdown).
+Smallblog requires a markdown parser. I currently use and recommend [Discount](http://www.pell.portland.or.us/~orc/Code/discount/), which is written in C. If you're not familiar with markdown, there is a good tutorial on Wikipedia, available [here](http://en.wikipedia.org/wiki/Markdown).
 
 ## Installation
     cd ~/public_html
@@ -50,4 +50,4 @@ Smallblog was written under pdksh and tested under bash (both on linux.) It shou
 * `stat(1)` on Linux is different than the BSD version. An alternate line has been included, that may be uncommented on BSD systems. I am looking into more portable methods of finding the file access time.
 
 ## License
-Smallblog is released under the ISC license. Please see [LICENSE](https://github.com/abyxcos/smallblog/blob/master/LICENSE) for the full text.
+Smallblog is released under the ISC (2-BSD) license. Please see [LICENSE](https://github.com/abyxcos/smallblog/blob/master/LICENSE) for the full text.
