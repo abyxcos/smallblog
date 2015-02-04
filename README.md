@@ -24,7 +24,7 @@ To run smallblog, simply go to the folder that contains your blog, and run `smal
 To use the tags features, include a `tags: ` line in your post followed by a list of tags to apply to your post.
 
 ## Configuration
-Smallblog should be configured via the site specific smallblog.conf. The configuration for the [example site](http://mnetic.ch/blog) is provided in `[smallblog.conf.sample](https://github.com/abyxcos/smallblog/blob/master/smallblog.conf.sample)`.
+Smallblog should be configured via the site specific smallblog.conf. The configuration for the [example site](http://mnetic.ch/blog) is provided in `smallblog.conf.sample`.
 
 ## Theming
 Smallblog uses the same template system as jekyll. The default smallblog template is the jekyll default.
