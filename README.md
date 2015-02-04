@@ -1,5 +1,5 @@
 # smallblog
-A small static blogging platform in the style of [jekyll](jekyllrb.com)
+A small static blogging platform in the style of [jekyll](http://jekyllrb.com/)
 
 Smallblog takes markdown files organized as `blog/year/month/day/post.md` and generates an index page containing the latest few posts, and a simple way to navigate all posts. Smallblog must be re-ran every time you add or modify a post (in the spirit of static blogging.) An example site may be found [here](http://mnetic.ch/blog).
 
@@ -10,6 +10,7 @@ Smallblog requires a markdown parser. I currently use and recommend [Discount](h
     cd ~/public_html
     mkdir -p blog/tags
     cp main.css blog/
+    cp smallblog.conf.sample blog/smallblog.conf
     echo "test" > blog/2013/08/16/test.md
 
 Installation is simple. Just make a `blog` directory on your server, and copy the `main.css` template into it. File hierarchy under `blog` is in the form of `blog/year/month/date/post.md`. Posts must have a .md extension or they will be ignored. Multiple posts on the same date will be sorted by last modified timestamp (`ls -t`.)
@@ -23,12 +24,7 @@ To run smallblog, simply go to the folder that contains your blog, and run `smal
 To use the tags features, include a `tags: ` line in your post followed by a list of tags to apply to your post.
 
 ## Configuration
-Smallblog may be configured via the variables at the top of the file.
-```shell
-    out_file="index.html"   # The html file generated in your blog root
-    title="blog"            # The title of your blog
-    max_posts=3             # Maximum posts on the front page
-```
+Smallblog should be configured via the site specific smallblog.conf. The configuration for the [example site](http://mnetic.ch/blog) is provided in `[smallblog.conf.sample](https://github.com/abyxcos/smallblog/blob/master/smallblog.conf.sample)`.
 
 ## Theming
 Smallblog uses the same template system as jekyll. The default smallblog template is the jekyll default.
