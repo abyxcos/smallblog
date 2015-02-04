@@ -8,7 +8,7 @@ Smallblog requires a markdown parser. I currently use and recommend [Discount](h
 
 ## Installation
     cd ~/public_html
-    mkdir blog tags
+    mkdir -p blog/tags
     cp main.css blog/
     echo "test" > blog/2013/08/16/test.md
 
