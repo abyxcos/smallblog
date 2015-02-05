@@ -37,7 +37,7 @@ blog_header="
 		<div class=\"container\">
 			<div class=\"site\">
 				<div class=\"header\">
-					<h1 class=\"title\"><a href=\"${PREFIX}\">mnetic.ch/blog</a></h1>
+					<h1 class=\"title\"><a href=\"${PREFIX}\">${header_title}</a></h1>
 					<a class=\"extra\" href=\"${PREFIX}/tags/\">tags</a>
 					<a class=\"extra\" href=\"${PREFIX}/archive.html\">all posts</a>
 					<a class=\"extra\" href=\"${PREFIX}/feed.rss\">rss</a>
@@ -173,7 +173,7 @@ for post in `ls -r */*/*/*.md`; do
 done
 
 # Generate the blog front page (index.html)
-echo -n "" > index.html
+echo "" > index.html
 echo "${blog_header}" >> index.html
 for post in `ls -r */*/*/*.md | head -n${max_posts}`; do
 	make_post "${post}" >> index.html
