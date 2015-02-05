@@ -138,7 +138,7 @@ make_tags(){
 make_rss(){
 	link_ident='<h2 class="title">'
 
-	echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>"
+	echo "<?xml version=\"1.0\" ?>"
 	echo "<rss version=\"2.0\">"
 	echo "<channel>"
 	echo "<title>$title</title>"
