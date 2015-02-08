@@ -107,7 +107,7 @@ make_tags_index(){
 	echo "<h2>Tags:</h2>"
 	echo "<ul class=\"posts\">"
 
-	for tag in `ls -r tags`; do
+	for tag in `ls tags`; do
 		if [ -d "tags/${tag}" ]; then
 			echo "<li><a href=\"${tag}\">${tag}</a></li>"
 		fi
