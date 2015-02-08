@@ -4,7 +4,7 @@ max_posts=3			# Maximum posts on the front page
 
 # User configuarion
 title="blog"			# The title of your blog
-header_title="mnetic.ch/blog"	# The title text in the header
+site="http://mnetic.ch"		# The address of your site
 name="Aaron Fineman"		# Name for footer
 email="abyxcos@mnetic.ch"	# Email for footer
 footer2_text="github:"		# Second line for footer
