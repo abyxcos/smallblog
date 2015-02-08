@@ -67,8 +67,7 @@ make_post(){
 		</a></h2>
 		<p class=\"meta\">Date: ${date//\//-}</p>
 		<div class=\"post\">"
-	tail -n+2 "$1" | markdown |\
-		sed 's/^<p>tags: /<p class=\"meta\">tags: /'
+	tail -n+2 "$1" | markdown | sed 's/^<p>tags: /<p class=\"meta\">tags: /'
 	echo "<br /></div>"
 }
 
@@ -102,9 +101,7 @@ make_tags_index(){
 	echo "<ul class=\"posts\">"
 
 	for tag in `ls tags`; do
-		if [ -d "tags/${tag}" ]; then
-			echo "<li><a href=\"${tag}\">${tag}</a></li>"
-		fi
+		[ -d "tags/${tag}" ] && echo "<li><a href=\"${tag}\">${tag}</a></li>"
 	done
 
 	echo "</ul>"
@@ -179,11 +176,13 @@ echo "${blog_footer}" >> index.html
 make_index "*/*/*" "Archives" > archive.html
 
 # Generate the tags directory structure and index pages
-make_tags
-for tag in `ls -r tags`; do
-	make_index "tags/${tag}" "" > "tags/${tag}/index.html"
-done
-make_tags_index > tags/index.html
+if [ -d tags ]; then
+	make_tags
+	for tag in `ls -r tags`; do
+		make_index "tags/${tag}" "" > "tags/${tag}/index.html"
+	done
+	make_tags_index > tags/index.html
+fi
 
 # Generate an rss feed of the front page
 make_rss > feed.rss
