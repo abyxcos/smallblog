@@ -75,7 +75,7 @@ make_post(){
 # make_index folder title
 make_index(){
 	echo "${blog_header}"
-	echo "<h2>$2:</h2>"
+	[ $2 ] && echo "<h2>$2:</h2>"
 	echo "<ul class=\"posts\">"
 
 	for post in `ls -r ${1}/*.md`; do
@@ -83,9 +83,9 @@ make_index(){
 		time=${post%/*}
 		month=`echo ${time} | cut -d/ -f2`
 
-		if [ "${oldmonth-"00"}" -ne "${month}" ]; then
+		if [ "${oldmonth-"00"}" != "${month}" ]; then
 			oldmonth="${month}"
-			echo "<h3>${time%%/*} - ${month}</h3>"
+			echo "<h3>${time%%/*} - ${month}:</h3>"
 		fi
 
 		echo "<li><span>${time##*/}</span> &raquo; <a href=\"${PREFIX}/${post}.html\">${title}</a></li>"
@@ -181,7 +181,7 @@ make_index "*/*/*" "Archives" > archive.html
 # Generate the tags directory structure and index pages
 make_tags
 for tag in `ls -r tags`; do
-	make_index "tags/${tag}" "${tag}" > "tags/${tag}/index.html"
+	make_index "tags/${tag}" "" > "tags/${tag}/index.html"
 done
 make_tags_index > tags/index.html
 
