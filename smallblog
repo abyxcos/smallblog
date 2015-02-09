@@ -144,6 +144,7 @@ make_rss(){
 		echo "<link>${link}</link>" | sed "s/\s*${link_ident}<a href='//" | sed "s/'>//"
 		echo "<pubDate>${post%/*}</pubDate>"
 		echo "<description>"
+		echo "`grep '^tags: ' ${post}`"
 		#markdown < "${post}" # FIXME: Special characters make RSS unhappy
 		echo "</description>"
 		echo "</item>"
