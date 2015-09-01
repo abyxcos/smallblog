@@ -31,8 +31,6 @@ blog_header="
   <link rel=\"stylesheet\" href=\"${PREFIX}/local.css\">
   <link rel=\"stylesheet\" href=\"main.css\">
   <link rel=\"stylesheet\" href=\"local.css\">
-  <link rel=\"stylesheet\" href=\"file:///emc/finema/src/playground/tech-blog/main.css\">
-  <link rel=\"stylesheet\" href=\"file:///emc/finema/src/playground/tech-blog/local.css\">
 </head>
 <body>
   <div class=\"container\">
