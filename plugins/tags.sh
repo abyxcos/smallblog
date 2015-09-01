@@ -42,7 +42,7 @@ if [ -d tags ]; then
 	done
 	make_tags_index > tags/index.html
 	# Look only at the tags: line
-	# Grab only alphanum preceded by a space and reformat the grouped match
+	# Grab only [alphanum and -] preceded by a space and reformat the grouped match
 	# Ignore the first match; proceed with the second onwards
-	sed '/tags: / s| \([A-Za-z0-9]*\)| <a class="meta" href="tags/\1">\1</a>|2g' index.html | tee index.html > /dev/null
+	sed '/tags: / s| \([A-Za-z0-9\-]*\)| <a class="meta" href="tags/\1">\1</a>|2g' index.html | tee index.html > /dev/null
 fi
