@@ -34,9 +34,12 @@ sub parse_post {
 
 	# Grab tags into an array
 	$text =~ s/^tags: (?<tags>.+?)\n//ms;
-	@tags = split(" ", $+{tags});
-	# Update the global tags list
-	$site->{tags}{$_} = 1 foreach (@tags);
+	# Check if we have tags
+	if ($+{tags}) {
+		@tags = split(" ", $+{tags});
+		# Update the global tags list
+		$site->{tags}{$_} = 1 foreach (@tags);
+	}
 
 	# Grab date from path and reformat slashes to dashes
 	my ($year,$month,$day) = ($path =~ m/(.*)\/(.*)\/(.*)\/.*.md/);
@@ -78,6 +81,11 @@ foreach my $post (@posts) {
 
 # Generate index.html
 {
+	#my $limit = ${@posts} > $site->{max_posts} ? ${@posts} : $site->{max_posts};
+	if ($site->{max_posts} > scalar @posts) {
+		$site->{max_posts} = scalar @posts;
+	}
+
 	my $vars = {
 		site => $site,
 		posts => [@posts[0 .. $site->{max_posts}-1]],
@@ -118,7 +126,7 @@ foreach my $tag (keys $site->{tags}) {
 	};
 	$tt->process('tag_page.tmpl', $vars, "tags/$tag.html")
 		|| die "tags/$tag.html failed: ", $tt->error(), "\n";
-}
+} if ($site->{tags})
 
 # Generate feed.rss
 {
