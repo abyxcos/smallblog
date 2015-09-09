@@ -5,14 +5,15 @@ Smallblog takes markdown files organized as `blog/year/month/day/post.md` and ge
 
 ## Dependencies
 Smallblog requires a markdown parser. I currently use and recommend [Discount](http://www.pell.portland.or.us/~orc/Code/discount/), which is written in C. If you're not familiar with markdown, there is a good tutorial on Wikipedia, available [here](http://en.wikipedia.org/wiki/Markdown).
-
 ### Perl modules
 * use [Template](https://metacpan.org/pod/Template);
 * use [YAML::Tiny](https://metacpan.org/pod/YAML::Tiny);
 * use [File::Slurp](https://metacpan.org/pod/File::Slurp);
 * use [Text::Markdown::Discount](https://metacpan.org/pod/Text::Markdown::Discount);
 
-Any Perl module that conforms to `my $html = markdown($text);` will currently work.
+Any perl markdown module that conforms to `my $html = markdown($text);` will currently work.
+
+`App::cpanminus` and `local::lib` may be of interest to those maintaining a local perl installation.
 
 ## Installation
     cd ~/public_html/

@@ -1,5 +1,5 @@
 # Program configuration
-prefix:		/emc/finema/src/playground/smallblog2/blog
+prefix:		/blog
 max_posts:	5
 
 # User configuration
