@@ -8,7 +8,7 @@
 [% FOREACH post=posts %]
 <item>
 <title>${post.title}</title>
-<link>${site.prefix}/${post.path}</link>
+<link>${site.prefix}/${post.path}.html</link>
 [% # FIXME: Hardcode a time and timezone into the pubDate %]
 [% # Use mtime (post.edit_date) over ctime (post.date) %]
 <pubDate>${post.edit_date}</pubDate>
