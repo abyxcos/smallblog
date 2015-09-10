@@ -9,7 +9,7 @@ ${post.html}
 
 [% IF post.tags.0 %]
 <p class="meta">tags: 
-[% FOREACH tag=post.tags.0 %]
+[% FOREACH tag=post.tags %]
 	<a class="meta" href="${site.prefix}/tags/${tag}.html">${tag}</a> 
 [% END %]
 </p>
