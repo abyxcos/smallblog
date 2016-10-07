@@ -8,10 +8,10 @@ Smallblog requires a markdown parser. I currently use and recommend [Discount](h
 ### Lua libraries
 * LuaPosix
 * lyaml
-* lua-discount
 * lua-resty-template
+* markdown
 
-Any lua markdown library that conforms to `post.html = markdown(post.text)` will currently work.
+Any lua markdown library that conforms to `post.html = markdown(post.text)` will currently work. Currently `lua-discount` and `markdown` are supported.
 
 ## Installation
     cd ~/public_html/

@@ -2,10 +2,17 @@
 --  - Error out if tags/ doesn't exist
 --
 local posix		= require "posix"				-- LuaPosix
-local sys_stat	= require "posix.sys.stat"	-- LuaPosx
+local sys_stat	= require "posix.sys.stat"	-- LuaPosix
 local yaml		= require "lyaml"
-local markdown	= require "discount"			-- lua-discount
 local template	= require "resty.template"	-- lua-resty-template
+-- Fish for a markdown library. Must conform to string = markdown(string)
+local markdown_libs = { "discount", "markdown" }
+local markdown
+for _,lib in ipairs( markdown_libs ) do
+	_,markdown = pcall( require, lib )
+	if _ then break end
+end
+assert( type(markdown) == "function", markdown )
 
 local utils = {}
 -- open and read a file into a string
