@@ -1,24 +1,23 @@
-# smallblog.pl
+# smallblog.lua
 A small static blogging platform in the style of [jekyll](http://jekyllrb.com/)
 
 Smallblog takes markdown files organized as `blog/year/month/day/post.md` and generates an index page containing the latest few posts, and a simple way to navigate all posts. Smallblog must be re-ran every time you add or modify a post to regenerate the site (in the spirit of static blogging.) An example site may be found [here](http://mnetic.ch/blog).
 
 ## Dependencies
 Smallblog requires a markdown parser. I currently use and recommend [Discount](http://www.pell.portland.or.us/~orc/Code/discount/), which is written in C. If you're not familiar with markdown, there is a good tutorial on Wikipedia, available [here](http://en.wikipedia.org/wiki/Markdown).
-### Perl modules
-* use [Template](https://metacpan.org/pod/Template);
-* use [YAML::Tiny](https://metacpan.org/pod/YAML::Tiny);
-* use [File::Slurp](https://metacpan.org/pod/File::Slurp);
-* use [Text::Markdown::Discount](https://metacpan.org/pod/Text::Markdown::Discount);
+### Lua libraries
+* LuaPosix
+* lyaml
+* lua-discount
+* lua-resty-template
 
-Any perl markdown module that conforms to `my $html = markdown($text);` will currently work.
-
-`App::cpanminus` and `local::lib` may be of interest to those maintaining a local perl installation.
+Any lua markdown library that conforms to `post.html = markdown(post.text)` will currently work.
 
 ## Installation
     cd ~/public_html/
-    mkdir -p blog
+    mkdir blog
     cp -R static/ templates/ blog/
+    mkdir tags
     cp smallblog.conf.sample blog/smallblog.conf
     echo "test" > blog/2013/08/16/test.md
 
@@ -26,7 +25,7 @@ Installation is simple. Just make a `blog` directory on your server, and copy th
 
 ## Usage
     cd ~/public_html/blog/
-    perl smallblog.pl
+    lua smallblog.lua
 
 To run smallblog, simply go to the folder that contains your blog, and run `smallblog` in that directory. It will generate the main page (`index.html`) in the current directory by parsing the date hierarchy folders for markdown (`.md`) files.
 
@@ -49,10 +48,10 @@ Posts take the format of:
 
 The site should be wrapped in a `<div class="site">` and contains the standard `<div class="header">`, `<div class="footer">`, and `<div class="contact">` for the header, footer, and footer contact information styling respectively. A `static/local.css` is provided to allow for minor changes without modifying the theme.
 
-Smallblog also employs [Template-Toolkit](https://metacpan.org/pod/Template) to generate pages. Any of the `tmpl` files in `templates/` may be freely modified.
+Smallblog also employs [lua-resty-template](https://github.com/bungle/lua-resty-template) to generate pages. Any of the `tmpl` files in `templates/` may be freely modified.
 
 ## Bugs
-Smallblog.pl is a rewrite of smallblog.sh. It should still be largely compatible. Please file an issue if you find any bugs.
+Smallblog.lua is a rewrite of smallblog.sh and smallblog.pl. It should still be largely compatible. Please file an issue if you find any bugs.
 
 ## License
 Smallblog is released under the ISC (2-BSD) license. Please see [LICENSE](https://github.com/abyxcos/smallblog/blob/master/LICENSE) for the full text.

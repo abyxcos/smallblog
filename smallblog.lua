@@ -4,8 +4,8 @@
 local posix		= require "posix"				-- LuaPosix
 local sys_stat	= require "posix.sys.stat"	-- LuaPosx
 local yaml		= require "lyaml"
-local markdown	= require "discount"
-local template	= require "resty.template"
+local markdown	= require "discount"			-- lua-discount
+local template	= require "resty.template"	-- lua-resty-template
 
 local utils = {}
 -- open and read a file into a string
