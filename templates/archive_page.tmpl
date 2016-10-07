@@ -1,16 +1,16 @@
-[% INCLUDE site_header.tmpl title=title %]
+{(templates/site_header.tmpl, {site = site, title = title})}
 
-<h1>${title}:</h1>
+<h1>{{title}}:</h1>
 <ul class="posts">
-[% FOREACH post=posts %]
-	[% # Print a YYYY-MM heading at a month granularity %]
-	[% SET post.short_date = post.date.remove('-..$') %]
-	[% IF post.short_date != date %]
-		[% SET date = post.short_date %]
-		<h3>${date}</h3>
-	[% END %]
-	<li><span>${post.date}</span> &raquo; <a href="${site.prefix}/${post.path}.html">${post.title}</a></li>
-[% END %]
+{% for _,post in ipairs(posts) do %}
+	{# Print a YYYY-MM heading at a month granularity #}
+	{% post.short_date = post.date:gsub("-..$", "") %}
+	{% if post.short_date ~= date then %}
+		{% date = post.short_date %}
+		<h3>{{date}}</h3>
+	{% end %}
+	<li><span>{{post.date}}</span> &raquo; <a href="{{site.prefix}}/{{post.path}}.html">{{post.title}}</a></li>
+{% end %}
 </ul>
 
-[% INCLUDE site_footer.tmpl %]
+{(templates/site_footer.tmpl)}

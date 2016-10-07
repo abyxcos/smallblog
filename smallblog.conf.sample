@@ -6,5 +6,5 @@ max_posts:	5
 title:		"mnetic.ch/blog"
 name:			"Aaron Fineman"
 email:		"abyxcos@mnetic.ch"
-footer2_text:	"github:"
-footer2_link:	"https://github.com/abyxcos"
+footer2_text:	"gitlab:"
+footer2_link:	"https://gitlab.com/abyxcos"

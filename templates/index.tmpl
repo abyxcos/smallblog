@@ -1,12 +1,11 @@
-[% INCLUDE site_header.tmpl title=site.title %]
+{(templates/site_header.tmpl, {site = site, title = site.title})}
 
-[% FOREACH post=posts %]
-
-[% INCLUDE post.tmpl %]
+{% for _,post in ipairs(posts) do %}
+{(templates/post.tmpl, {site = site, post = post})}
 <br />
 
-[% END %]
+{% end %}
 
-<h3><a class="extra" href="${site.prefix}/archive.html">all posts</a></h3>
+<h3><a class="extra" href="{{site.prefix}}/archive.html">all posts</a></h3>
 
-[% INCLUDE site_footer.tmpl %]
+{(templates/site_footer.tmpl)}

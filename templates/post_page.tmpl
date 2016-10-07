@@ -1,6 +1,6 @@
-[% INCLUDE site_header.tmpl title=post.title %]
+{(templates/site_header.tmpl, {site = site, title = post.title})}
 
-[% INCLUDE post.tmpl %]
+{(templates/post.tmpl)}
 <br />
 
-[% INCLUDE site_footer.tmpl %]
+{(templates/site_footer.tmpl, {site = site})}
