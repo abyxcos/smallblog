@@ -116,7 +116,7 @@ foreach my $post (@posts) {
 }
 
 # Generate tags/$tag.html
-foreach my $tag (keys $site->{tags}) {
+foreach my $tag (keys %{$site->{tags}}) {
 	my @tag_posts = map {grep(/$tag/, @{$_->{tags}}) ? $_ : ()} @posts;
 
 	my $vars = {
